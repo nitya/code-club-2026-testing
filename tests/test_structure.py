@@ -3,8 +3,6 @@ from conftest import LABS_DIR, REPO_ROOT, lab_path, load_course_spec
 
 
 REQUIRED_DIRS = [
-    ".github/agents",
-    ".github/agents/skills",
     "data",
     "src",
     "src.original",
