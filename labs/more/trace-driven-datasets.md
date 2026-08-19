@@ -1,7 +1,7 @@
 # More Lab — Datasets from real traces
 
 > **What you'll do:** Turn real production traces into a fresh evaluation dataset so the eval catches the failures your users actually hit.
-> **Time:** ~30 min · **Prerequisites:** [Core Lab 04](../core/04-monitor-portal.md), [Continuous evaluation](./continuous-eval.md) recommended
+> **Time:** ~20 min · **Prerequisites:** [Core Lab 04](../core/04-monitor-portal.md), [Continuous evaluation](./continuous-eval.md) recommended
 
 ## 🎯 Goal
 
@@ -56,10 +56,10 @@ The best next test case is the one you just barely got away with in prod.
 4. **Curate into JSONL.**
    Reduce the export to the schema in
    [`specs/schemas/dataset.schema.json`](../../specs/schemas/dataset.schema.json).
-   Each row = one query, optional expected fields, optional metadata.
+   Each row = one query, optional response, ground truth, or context fields.
 
    ```jsonl
-   {"query": "...", "expected": "...", "meta": {"source_trace": "..."}}
+   {"query": "...", "ground_truth": "...", "context": "source trace: ..."}
    ```
 
 5. **Version and ship.**
@@ -85,7 +85,7 @@ The best next test case is the one you just barely got away with in prod.
 | Include a mix of pass, near-pass, and fail turns | Ship only failures — you'll over-fit fixes |
 | De-identify aggressively | Rely on ad-hoc redaction with `sed` |
 | Keep a size budget (e.g., 50 rows) | Ship the whole export |
-| Note the source trace in `meta` | Discard the trace ID — you'll want it later |
+| Note the source trace in `context` | Discard the trace ID — you'll want it later |
 
 ## ✅ Verify
 

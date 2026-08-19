@@ -13,13 +13,13 @@ answers. This is your **green baseline** for the Core Labs.
 
 ```mermaid
 flowchart LR
-    Plan([Plan]) --> Build([Build]) --> Evaluate([Evaluate]):::active --> Deploy([Deploy]) --> Monitor([Monitor]) --> Optimize([Optimize]) --> Evaluate
+    Plan([Plan]) --> Build([Build]) --> Evaluate([Evaluate]) --> Deploy([Deploy]) --> Monitor([Monitor]):::active --> Optimize([Optimize]) --> Evaluate
     Monitor --> Protect([Protect]) --> Evaluate
 
     classDef active fill:#0ea5e9,stroke:#0369a1,color:#fff;
 ```
 
-> 🧭 **This lab covers:** _Evaluate_ (informally) — a smoke check before the
+> 🧭 **This lab covers:** _Monitor_ (informally) — a smoke check before the
 > real evaluation labs.
 
 ### 📍 You are here
