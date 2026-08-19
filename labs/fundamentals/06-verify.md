@@ -1,7 +1,7 @@
 # Lab 06 — End-to-end verification
 
 > **What you'll do:** Confirm both agents answer a canonical question end-to-end before moving into the Core Labs.
-> **Time:** ~5 min · **Prerequisites:** [Lab 04](./04-create-prompt-agent.md), [Lab 05](./05-deploy-hosted-agent.md)
+> **Time:** ~10 min · **Prerequisites:** [Lab 04](./04-create-prompt-agent.md), [Lab 05](./05-deploy-hosted-agent.md)
 
 ## 🎯 Goal
 

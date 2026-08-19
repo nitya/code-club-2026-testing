@@ -1,7 +1,7 @@
 # Lab 05 — Deploy the Hosted Agent
 
 > **What you'll do:** Deploy the containerized **Contoso Travel Concierge** hosted agent to Foundry.
-> **Time:** ~10 min · **Prerequisites:** [Lab 03](./03-deploy-models.md)
+> **Time:** ~15 min · **Prerequisites:** [Lab 03](./03-deploy-models.md)
 
 ## 🎯 Goal
 
