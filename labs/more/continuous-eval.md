@@ -67,22 +67,33 @@ someone must approve or fix.
    evaluate:
      runs-on: ubuntu-latest
      needs: verify-course   # from the existing spec suite
-     if: |
-       contains(github.event.pull_request.changed_files, 'src/') ||
-       contains(github.event.pull_request.changed_files, 'artifacts/')
      steps:
        - uses: actions/checkout@v5
        - uses: actions/setup-python@v5
          with: { python-version: "3.13" }
+       - name: Detect evaluation inputs
+         id: changes
+         env:
+           GH_TOKEN: ${{ github.token }}
+         run: |
+           files="$(gh api repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files --paginate --jq '.[].filename')"
+           if grep -Eq '^(src/|artifacts/(prompts|datasets)/)' <<< "$files"; then
+             echo "run_eval=true" >> "$GITHUB_OUTPUT"
+           else
+             echo "run_eval=false" >> "$GITHUB_OUTPUT"
+           fi
        - name: Azure login (OIDC)
+         if: steps.changes.outputs.run_eval == 'true'
          uses: azure/login@v2
          with:
            client-id:      ${{ secrets.AZURE_CLIENT_ID }}
            tenant-id:      ${{ secrets.AZURE_TENANT_ID }}
            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
        - name: Run evaluation
+         if: steps.changes.outputs.run_eval == 'true'
          run: python -m contoso_eval run --agent ... --dataset ...
        - name: Check thresholds
+         if: steps.changes.outputs.run_eval == 'true'
          run: python -m contoso_eval check ./artifacts/evaluators/generated/latest.json ./artifacts/evaluators/reference/thresholds.yaml
    ```
 
